@@ -1,0 +1,12 @@
+ button {
+     background-color: goldenrod;
+     border: none;
+     border: 1px solid #333;
+     cursor: pointer;
+     padding: 10px 20px;
+     border-radius: 5px;
+     -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+     -ms-border-radius: 5px;
+     -o-border-radius: 5px;
+ }
