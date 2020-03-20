@@ -1,0 +1,17 @@
+.left-review {
+    float: left;
+    width: 70%;
+    border-right: 1px solid lightgray;
+}
+
+.right-cart {
+    float: left;
+    width: 20%;
+    padding: 0 30px;
+}
+
+.review-area {
+    width: 80%;
+    height: 600px;
+    margin: 0 auto;
+}
