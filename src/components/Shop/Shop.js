@@ -7,6 +7,7 @@ import {
   addToDatabaseCart,
   getDatabaseCart
 } from '../../utilities/databaseManager';
+import { Link } from 'react-router-dom';
 
 const Shop = () => {
   const data10 = fakeData.slice(0, 10);
@@ -61,7 +62,11 @@ const Shop = () => {
       </div>
 
       <div className='cart-area'>
-        <Cart cart={cart}></Cart>
+        <Cart cart={cart}>
+          <Link to='/review'>
+            <button className='reviewBtn'>Review Order</button>
+          </Link>
+        </Cart>
       </div>
     </div>
   );

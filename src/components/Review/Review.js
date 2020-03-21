@@ -2,15 +2,23 @@ import React, { useEffect, useState } from 'react';
 import './Review.css';
 import {
   getDatabaseCart,
-  removeFromDatabaseCart
+  removeFromDatabaseCart,
+  processOrder
 } from '../../utilities/databaseManager';
 import fakeData from '../../fakeData';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
+import happyImg from '../../images/giphy.gif';
 
 const Review = () => {
   const [cart, setCart] = useState([]);
+  const [orderPlaced, setOrderPlaced] = useState(false);
 
+  const placeOrderHandler = () => {
+    setCart([]);
+    setOrderPlaced(true);
+    processOrder();
+  };
   const removeProduct = productKey => {
     const newCart = cart.filter(pd => pd.key !== productKey);
     setCart(newCart);
@@ -29,6 +37,11 @@ const Review = () => {
     });
     setCart(cartProducts);
   }, []);
+
+  let thankYou;
+  if (orderPlaced) {
+    thankYou = <img src={happyImg} alt='' />;
+  }
   return (
     <div className='review-area'>
       <div className='left-review'>
@@ -41,9 +54,12 @@ const Review = () => {
             removeProduct={removeProduct}
           ></ReviewItem>
         ))}
+        {thankYou}
       </div>
       <div className='right-cart'>
-        <Cart cart={cart}></Cart>
+        <Cart cart={cart}>
+          <button onClick={placeOrderHandler}>Place Order</button>
+        </Cart>
       </div>
     </div>
   );
