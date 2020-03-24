@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Cart.css';
+import { userContext } from '../../App';
 
 const Cart = props => {
-  console.log(props);
+  const user = useContext(userContext);
+  //console.log(user);
+  // console.log(props);
   const cart = props.cart;
-  console.log(cart);
+  // console.log(cart);
   const productPrice = cart.reduce(
     (productPrice, product) => productPrice + product.price * product.quantity,
     0
@@ -18,6 +21,7 @@ const Cart = props => {
   // debugger;
   return (
     <div>
+      {user}
       <h3>cart area text</h3>
       <h4>Order Summery: {cart.length}</h4>
 

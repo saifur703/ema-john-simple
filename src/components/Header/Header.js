@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '../../images/logo.png';
 import './Header.css';
+import { userContext } from '../../App';
+
 const Header = () => {
+  const user = useContext(userContext);
   return (
     <div className='header'>
       <img src={logo} alt='' />
@@ -19,6 +22,10 @@ const Header = () => {
           <li>
             <a href='/inventory'>Manage Inventory</a>
           </li>
+          <li>
+            <a href='/login'>Login</a>
+          </li>
+          <span style={{ color: 'red' }}>{user}</span>
         </ul>
       </nav>
     </div>

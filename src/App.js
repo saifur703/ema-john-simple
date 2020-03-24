@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import Shop from './components/Shop/Shop';
@@ -7,32 +7,41 @@ import Review from './components/Review/Review';
 import Inventory from './components/Inventory/Inventory';
 import NotFound from './components/NotFound/NotFound';
 import ProductDetail from './components/ProductDetail/ProductDetail';
+import Login from './components/Login/Login';
+
+export const userContext = createContext();
 function App() {
+  const user = { name: 'hablu marka kotha barta', email: 'saifur@test.com' };
   return (
     <div className='App'>
-      <Header></Header>
-      <Router>
-        <Switch>
-          <Route path='/shop'>
-            <Shop></Shop>
-          </Route>
-          <Route path='/review'>
-            <Review></Review>
-          </Route>
-          <Route path='/inventory'>
-            <Inventory></Inventory>
-          </Route>
-          <Route exact path='/'>
-            <Shop></Shop>
-          </Route>
-          <Route path='/product/:productkey'>
-            <ProductDetail></ProductDetail>
-          </Route>
-          <Route path='*'>
-            <NotFound></NotFound>
-          </Route>
-        </Switch>
-      </Router>
+      <userContext.Provider value={user.name}>
+        <Header></Header>
+        <Router>
+          <Switch>
+            <Route path='/shop'>
+              <Shop></Shop>
+            </Route>
+            <Route path='/review'>
+              <Review></Review>
+            </Route>
+            <Route path='/inventory'>
+              <Inventory></Inventory>
+            </Route>
+            <Route exact path='/'>
+              <Shop></Shop>
+            </Route>
+            <Route path='/product/:productkey'>
+              <ProductDetail></ProductDetail>
+            </Route>
+            <Route path='/login'>
+              <Login></Login>
+            </Route>
+            <Route path='*'>
+              <NotFound></NotFound>
+            </Route>
+          </Switch>
+        </Router>
+      </userContext.Provider>
     </div>
   );
 }
