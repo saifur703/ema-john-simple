@@ -8,6 +8,7 @@ import Inventory from './components/Inventory/Inventory';
 import NotFound from './components/NotFound/NotFound';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import Login from './components/Login/Login';
+import Hook from './components/Hook/Hook';
 
 export const userContext = createContext();
 function App() {
@@ -35,6 +36,9 @@ function App() {
             </Route>
             <Route path='/login'>
               <Login></Login>
+            </Route>
+            <Route path='/hook'>
+              <Hook></Hook>
             </Route>
             <Route path='*'>
               <NotFound></NotFound>
