@@ -7,7 +7,7 @@ import { useState } from 'react';
 firebase.initializeApp(firebaseConfig);
 
 // Authentication
-const Auth = () => {
+const useAuth = () => {
   // State
   const [user, setUser] = useState(null);
 
@@ -51,4 +51,4 @@ const Auth = () => {
   };
 };
 
-export default Auth;
+export default useAuth;

@@ -1,10 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
+// import React, { useContext } from 'react';
 import logo from '../../images/logo.png';
 import './Header.css';
-import { userContext } from '../../App';
+import useAuth from '../Login/useAuth';
 
 const Header = () => {
-  const user = useContext(userContext);
+  // const user = useContext(userContext);
+  const auth = useAuth();
+  console.log(auth.user);
+  // if (auth.user === null) {
+  //   console.log(auth.user);
+  // } else {
+  //   console.log(auth.user);
+  // }
   return (
     <div className='header'>
       <img src={logo} alt='' />
@@ -22,10 +30,13 @@ const Header = () => {
           <li>
             <a href='/inventory'>Manage Inventory</a>
           </li>
-          <li>
-            <a href='/login'>Login</a>
-          </li>
-          <span style={{ color: 'red' }}>{user}</span>
+          {auth.user ? (
+            <span style={{ color: 'yellow' }}>{auth.user.name}</span>
+          ) : (
+            <li>
+              <a href='/login'>Login</a>
+            </li>
+          )}
         </ul>
       </nav>
     </div>
