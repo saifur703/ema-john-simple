@@ -1,10 +1,35 @@
+import React from 'react';
 import * as firebase from 'firebase/app';
 import 'firebase/auth/';
 import firebaseConfig from '../../firebase.config';
 import { useState } from 'react';
+import { Route, Redirect } from 'react-router-dom';
 
 // Firebase Initialize
 firebase.initializeApp(firebaseConfig);
+
+// A wrapper for <Route> that redirects to the login
+// screen if you're not yet authenticated.
+export const PrivateRoute = ({ children, ...rest }) => {
+  const auth = useAuth();
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        auth.user ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/login',
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
+  );
+};
 
 // Authentication
 const useAuth = () => {
@@ -14,7 +39,7 @@ const useAuth = () => {
   // Sign In With Google
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    firebase
+    return firebase
       .auth()
       .signInWithPopup(provider)
       .then(res => {

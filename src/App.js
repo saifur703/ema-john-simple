@@ -9,6 +9,7 @@ import NotFound from './components/NotFound/NotFound';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import Login from './components/Login/Login';
 import Hook from './components/Hook/Hook';
+import { PrivateRoute } from './components/Login/useAuth';
 
 export const userContext = createContext();
 function App() {
@@ -25,9 +26,10 @@ function App() {
             <Route path='/review'>
               <Review></Review>
             </Route>
-            <Route path='/inventory'>
+            <PrivateRoute path='/inventory'>
               <Inventory></Inventory>
-            </Route>
+            </PrivateRoute>
+
             <Route exact path='/'>
               <Shop></Shop>
             </Route>

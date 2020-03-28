@@ -4,7 +4,7 @@ import './Inventory.css';
 const Inventory = () => {
   return (
     <div>
-      <h2>Inventory is here</h2>
+      <h2>Shipment</h2>
     </div>
   );
 };
