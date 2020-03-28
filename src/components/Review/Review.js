@@ -55,6 +55,14 @@ const Review = () => {
           ></ReviewItem>
         ))}
         {thankYou}
+        {!cart.length && (
+          <h2>
+            Cart is empty.{' '}
+            <a href='/shop' style={{ color: 'red' }}>
+              keep shopping
+            </a>
+          </h2>
+        )}
       </div>
       <div className='right-cart'>
         <Cart cart={cart}>

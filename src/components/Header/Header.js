@@ -30,8 +30,14 @@ const Header = () => {
           <li>
             <a href='/inventory'>Manage Inventory</a>
           </li>
-          {auth.user ? (
+          {auth.user && (
             <span style={{ color: 'yellow' }}>{auth.user.name}</span>
+          )}
+
+          {auth.user ? (
+            <li>
+              <a href='/login'>Sign Out</a>
+            </li>
           ) : (
             <li>
               <a href='/login'>Login</a>
