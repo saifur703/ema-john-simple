@@ -3,9 +3,9 @@ import './Review.css';
 import {
   getDatabaseCart,
   removeFromDatabaseCart,
-  processOrder
+  processOrder,
 } from '../../utilities/databaseManager';
-import fakeData from '../../fakeData';
+// import fakeData from '../../fakeData';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
 import happyImg from '../../images/giphy.gif';
@@ -19,8 +19,8 @@ const Review = () => {
     setOrderPlaced(true);
     processOrder();
   };
-  const removeProduct = productKey => {
-    const newCart = cart.filter(pd => pd.key !== productKey);
+  const removeProduct = (productKey) => {
+    const newCart = cart.filter((pd) => pd.key !== productKey);
     setCart(newCart);
     removeFromDatabaseCart(productKey);
     //console.log('clicked Removed Product', productKey);
@@ -30,12 +30,24 @@ const Review = () => {
     // Cart
     const savedCart = getDatabaseCart();
     const productKeys = Object.keys(savedCart);
-    const cartProducts = productKeys.map(key => {
-      const product = fakeData.find(pd => pd.key === key);
-      product.quantity = savedCart[key];
-      return product;
-    });
-    setCart(cartProducts);
+    fetch('http://localhost:4200/getProductsByKey', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(productKeys),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const cartProducts = productKeys.map((key) => {
+          const product = data.find((pd) => pd.key === key);
+          product.quantity = savedCart[key];
+          return product;
+        });
+        setCart(cartProducts);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   let thankYou;
@@ -47,7 +59,7 @@ const Review = () => {
       <div className='left-review'>
         <h2>Cart Items: {cart.length}</h2>
         <hr />
-        {cart.map(pd => (
+        {cart.map((pd) => (
           <ReviewItem
             product={pd}
             key={pd.key}

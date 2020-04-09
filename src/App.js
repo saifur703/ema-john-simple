@@ -4,12 +4,13 @@ import Header from './components/Header/Header';
 import Shop from './components/Shop/Shop';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Review from './components/Review/Review';
-import Inventory from './components/Inventory/Inventory';
+import ManageInventory from './components/Inventory/ManageInventory';
 import NotFound from './components/NotFound/NotFound';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import Login from './components/Login/Login';
 import Hook from './components/Hook/Hook';
 import { PrivateRoute } from './components/Login/useAuth';
+import Inventory from './components/Inventory/Inventory';
 
 export const userContext = createContext();
 function App() {
@@ -26,8 +27,11 @@ function App() {
             <Route path='/review'>
               <Review></Review>
             </Route>
-            <PrivateRoute path='/inventory'>
-              <Inventory></Inventory>
+            <Route path='/inventory'>
+              <Inventory />
+            </Route>
+            <PrivateRoute path='/manageinventory'>
+              <ManageInventory></ManageInventory>
             </PrivateRoute>
 
             <Route exact path='/'>

@@ -22,7 +22,7 @@ export const PrivateRoute = ({ children, ...rest }) => {
           <Redirect
             to={{
               pathname: '/login',
-              state: { from: location }
+              state: { from: location },
             }}
           />
         )
@@ -42,13 +42,13 @@ const useAuth = () => {
     return firebase
       .auth()
       .signInWithPopup(provider)
-      .then(res => {
+      .then((res) => {
         const { displayName, email, photoURL } = res.user;
         const signedInUser = { name: displayName, email, photo: photoURL };
         setUser(signedInUser);
         return res.user;
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         setUser(null);
         return err.message;
@@ -60,11 +60,11 @@ const useAuth = () => {
     firebase
       .auth()
       .signOut()
-      .then(res => {
+      .then((res) => {
         console.log(res);
         setUser(null);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -72,7 +72,7 @@ const useAuth = () => {
   return {
     user,
     signInWithGoogle,
-    signOut
+    signOut,
   };
 };
 

@@ -28,7 +28,10 @@ const Header = () => {
             <a href='/review'>Order Review</a>
           </li>
           <li>
-            <a href='/inventory'>Manage Inventory</a>
+            <a href='/inventory'>Inventory</a>
+          </li>
+          <li>
+            <a href='/manageinventory'>Manage Inventory</a>
           </li>
           {auth.user && (
             <span style={{ color: 'yellow' }}>{auth.user.name}</span>

@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
-const Product = props => {
+const Product = (props) => {
+  console.log(props);
   const { name, img, key, seller, price, stock } = props.product;
   return (
     <div className='single-product'>

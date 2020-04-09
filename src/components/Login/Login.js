@@ -1,13 +1,14 @@
 import React from 'react';
 import './Login.css';
-import Auth from './useAuth';
+import 'firebase/auth';
+import useAuth from './useAuth';
 
 const Login = () => {
-  const auth = Auth();
+  const auth = useAuth();
   // console.log(auth.user);
 
   const handleSignIn = () => {
-    auth.signInWithGoogle().then(res => {
+    auth.signInWithGoogle().then((res) => {
       window.location.pathname = '/inventory';
     });
   };
